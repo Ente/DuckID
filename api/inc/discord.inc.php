@@ -6,8 +6,9 @@ ini_set('max_execution_time', 300);
 
 error_reporting(E_ALL);
 
-define('OAUTH2_CLIENT_ID', '772548298556964864');
-define('OAUTH2_CLIENT_SECRET', 'eDXiAY1W4JMTew_FxBVGBkgZAl_w-9gH');
+define('OAUTH2_CLIENT_ID', OAUTH2_CLIENT_ID);                         #
+define('OAUTH2_CLIENT_SECRET', OAUTH2_CLIENT_SECRET);                 # Replace with values from the Discord Developer Page
+define('OAUTH_REDIRECT_URI', OAUTH_REDIRECT_URI);                     #
 
 $authorizeURL = 'https://discord.com/api/oauth2/authorize';
 $tokenURL = 'https://discord.com/api/oauth2/token';

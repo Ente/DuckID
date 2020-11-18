@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-#ini_set("display_errors", 1);
+ini_set("display_errors", 1);
 require_once "api/inc/db.inc.php";
 require_once "api/inc/discord.inc.php";
 include "api/vars.php";
@@ -25,17 +25,30 @@ if($count == 1){
     die("No Data found in Database!");
 }
 
+if(isset($_GET["ticket_id"])){
+    if(isset($_GET["agent"])){
+        if($tp["status"] == "agent" || "moderator" || "admin" || "owner"){
+            $sql1 = "SELECT * FROM tickets WHERE ticket_id = '{$_GET["ticket_id"]}';";
+        }
+    } else {
 
-$t_sql = "SELECT * FROM tickets WHERE creator = '{$user->id}' LIMIT 1;";
-$t_res = mysqli_query($conn, $t_sql);
-$t_count = mysqli_num_rows($t_res);
+        $sql1 = "SELECT * FROM tickets WHERE ticket_id = '{$_GET["ticket_id"]}' AND creator = '{$user->id}';";
 
-if($t_count == 1){
-    $t_tp = mysqli_fetch_assoc($t_res);
-    $t_tp1 = json_decode($t_tp["ticket_infos"], true);
+    };
+    $res1 = mysqli_query($conn, $sql1);
+    $count1 = mysqli_num_rows($res);
+
+    if($count1 == 1){
+        $data = mysqli_fetch_assoc($res1);
+        $data_js_infos = json_decode($data["ticket_infos"], true);
+        $data_js_messages = json_decode($data["messages"], true);
+    } else {
+        header("Location: profile.php?error=t_3");
+    }
 } else {
-    $t_tp = "No tickets yet.";
+    header("Location: profile.php?error=t_2");
 }
+
 ?>
 <head>
     <meta charset="utf-8">
@@ -108,19 +121,48 @@ if($t_count == 1){
         </div>
         </nav>
         <div class="container-fluid">
-            <h3 class="text-dark mb-1">{yTicket.message}</h3>
+            <h3 class="text-dark mb-1"><?php echo $data_js_infos["title"];  ?></h3>
         </div>
         <div class="card shadow mb-4">
             <div class="card mb-4">
                 <div class="card-header py-3">
-                    <div class="float-none"><textarea class="d-inline-block" style="width: 400px;height: 55px;" name="text_message" placeholder="Enter your message here"></textarea><a class="btn btn-success btn-circle ml-1" role="button"><i class="fas fa-check d-inline-block text-white"></i></a></div>
+                    <?php
+
+                    $infos = [
+                        "ticket_id" => "{$data["ticket_id"]}",
+                        "message" => [
+                            "author" => "{$user->username}#{$user->discriminator}",
+                            "author_id" => "{$user->id}",
+                            "zeit"=> time()
+                        ]
+                    ];
+                    $json_infos = urlencode(json_encode($infos));
+                    ?>
+                   <form action="api/handling/actions/tickets/update_ticket.php" method="POST"><input type="text" name="infos" value='<?php echo $json_infos; ?>' hidden> <div class="float-none"><textarea class="d-inline-block" style="width: 400px;height: 55px;" name="text_message" placeholder="Enter your message here"></textarea><button class="btn btn-success btn-circle ml-1" role="button" type="submit"><i class="fas fa-check d-inline-block text-white"></i></button></div></form>
                 </div>
             </div>
             <div class="card-header py-3">
-                <h6 class="text-primary m-0 font-weight-bold">{ticket.name} | {ticket.id}</h6>
+                <h6 class="text-primary m-0 font-weight-bold">"<?php echo $data_js_infos["title"]; ?>" | Ticket ID: #<?php echo $data["ticket_id"]; ?></h6>
             </div>
             <div class="card-body">
-                <p class="m-0">{ticket.message[x]}</p>
+                <?php
+
+                    foreach($data_js_messages as $js){
+                        if($js["author"] == $user->id){
+                            $color = "color: grey;";
+                            $float = "float: right;";
+                        } else {
+                            $float = null;
+                            $color = $float;
+                        }
+                            echo <<< DATA
+
+                            <p class="m-0" style="{$color}{$float}padding: 20px;border:solid;border-radius:2%;margin:5px;"><b>{$js["author"]}</b>: "{$js["message"]}"</p>
+
+                            DATA;
+                    }
+
+                ?>
             </div>
         </div>
     </div>

@@ -184,7 +184,7 @@ if($tp["status"] == "user"){
                                         <td>{$row["ticket_id"]}</td>
                                         <td>{$ts}</td>
                                         <td>{$row["agent"]}</td>
-                                        <td><a href="your_tickets.php?agent={$tp["username"]}&ticket_id={$row["ticket_id"]}">Open Ticket</a></td>
+                                        <td><a href="your_tickets.php?agent={$user->id}&ticket_id={$row["ticket_id"]}">Open Ticket</a></td>
                                         </tr>
 
 
@@ -199,7 +199,7 @@ if($tp["status"] == "user"){
                                 } else {
                                     $d_list = "N/A";
                                     $d_list2 = "N/A";
-                                    echo "<span>No matches found!</span>";
+                                    echo "<span style='color:red;'>No value given!</span>";
                                 }
 
                                 ?>

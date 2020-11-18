@@ -4,8 +4,8 @@ date_default_timezone_set("Europe/Berlin");
 # Datenbank Anmeldedaten
 
 $db = "duckid";
-$db_username = "ente";
-$db_password = "bryanb551";
+$db_username = "";
+$db_password = "";
 $db_host = "localhost";
 
 require_once "discord.inc.php";

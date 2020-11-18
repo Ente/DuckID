@@ -56,6 +56,8 @@
 
 - `Code T-4`: Nicht in Datenbank gefunden.
 
+- `Code uK`: Unbekannter Fehler.
+
 # Permissionssystem, Rollensystem
 
 ## Rollensystem

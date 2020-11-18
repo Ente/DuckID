@@ -37,8 +37,14 @@ $ticket = [
         "user_id" => "{$user->id}"
     ],
     "bereich" => "{$_POST["ticket_bereich"]}",
-    "conversation" => [
-        NULL
+];
+
+$messages = [
+    "1" => [
+        "author" => "{$user->username}#{$user->discriminator}",
+        "author_id" => "{$user->id}",
+        "zeit"=> time(),
+        "message" => "{$_POST["ticket_message"]}",
     ]
 ];
 
@@ -78,7 +84,7 @@ $alt_id = rand(111111, PHP_INT_MAX);
  */
 $ticket_attachements = $_SESSION["images_filepath"];
 
-$sql = "INSERT INTO tickets (`ticket_infos`, `ticket_message`, `ticket_attachements`, `alt_id`) VALUES ('{$param_ticket}', '{$ticket_message}', '{$ticket_attachements}', '{$alt_id}')";
+$sql = "INSERT INTO tickets (`ticket_infos`, `ticket_message`, `ticket_attachements`, `alt_id`, `messages`, `creator`, `status`) VALUES ('{$param_ticket}', '{$ticket_message}', '{$ticket_attachements}', '{$alt_id}', '{$messages1}')";
 $res = mysqli_query($conn, $sql);
 
 if(mysqli_error($conn)){

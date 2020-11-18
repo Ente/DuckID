@@ -8,7 +8,7 @@ if(get('action') == 'login') {
 
   $params = array(
     'client_id' => OAUTH2_CLIENT_ID,
-    'redirect_uri' => 'http://enti.ddns.net:8099/api/handling/discord_login.php?discord=true', # 'http://dev-base.dd:8099/api/handling/discord_login.php?discord=true
+    'redirect_uri' => OAUTH_REDIRECT_URI,
     'response_type' => 'code',
     'scope' => 'identify email',
   );
@@ -27,7 +27,7 @@ if(get('code')) {
     "grant_type" => "authorization_code",
     'client_id' => OAUTH2_CLIENT_ID,
     'client_secret' => OAUTH2_CLIENT_SECRET,
-    'redirect_uri' => 'http://enti.ddns.net:8099/api/handling/discord_login.php?discord=true', # http://dev-base.dd:8099/api/handling/discord_login.php?discord=true
+    'redirect_uri' => OAUTH_REDIRECT_URI, 
     'code' => get('code')
   ));
   $logout_token = $token->access_token;
@@ -38,15 +38,7 @@ if(get('code')) {
 }
 
 if(session('access_token')) {
-/*  $user = apiRequest($apiURLBase);
-    echo $_SESSION["access_token"];
-  echo '<h3>Logged In</h3>';
-  echo '<h4>Welcome, ' . $user->username . '</h4>';
-  echo '<pre>';
-    print_r($user->id);
-  echo '</pre>';
-*/
-#header("Location: ../../menu.php");
+
 header("Location: login.php");
 } else {
   header("Location: " . $_SERVER["PHP_SELF"] . "/?action=login");
