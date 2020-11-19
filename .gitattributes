@@ -1,6 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-*.php = linguist-language=php
+*.php linguist-language=php
 *.svg linguist-vendored=false
 * linguist-detectable=true
 
