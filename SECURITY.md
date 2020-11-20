@@ -13,6 +13,7 @@ Please take note, that this list might change with every update and also unsuppo
 ## Reporting a Vulnerability
 
 You can report an vulnerability via Email: support@duck-developing-studio.ga !
+
 Please include the repository's name in the Email.
 
 Usually, security updates will be published on every second week.
