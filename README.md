@@ -2,6 +2,8 @@
 
 DuckID is an Ticket System which uses Discord as an Login Method.
 
+(Tested on Debian 10)
+
 ## Requirements
 
 - PHP 7.3
