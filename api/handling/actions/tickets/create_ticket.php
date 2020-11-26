@@ -8,23 +8,22 @@ $user = apiRequest($apiURLBase);
 
 /**
  * @var array
- * Ticket Array sollte immer beinhalten
- * - Wer hat das Ticket erstellt?
- * - Wann wurde es erstellt?
- * - Welchen Titel hat es?
- * - Welche Nachricht?
- * - Priorität?
- * - Nutzerdaten?
- * - Welcher Bereich?
+ * Ticket Array should always contain
+ * - who created the Ticket
+ * - when it was created
+ * - the ticket title
+ * - the message
+ * - priority
+ * - data about the user
+ * - which section it belongs to
  * 
- * Optional bzw. erst später hinzuzufügen:
+ * Filled out later:
  * 
- * - Wem wurde das Ticket zugeteilt?
- * - Wann wurde es geschlossen?
- * - Von wem wurde es geschlossen?
- * - Wer hat alles drin geschrieben?
- * - Alle Nachrichten innerhalb des Tickets?
- * - Flags?
+ * - ticket agent
+ * - when it was closed
+ * - who closed it
+ * - all messages in the ticket
+ * - flags
  */
 $ticket = [
     "author" => "{$user->username}#{$user->discriminator}",

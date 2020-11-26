@@ -1,2 +1,4 @@
 .env
 privacy_policy1.php
+/tests/
+api/gateway.php
