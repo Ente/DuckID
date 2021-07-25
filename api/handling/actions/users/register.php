@@ -1,5 +1,5 @@
 <?php
-ini_set("display_errors", 1);
+#ini_set("display_errors", 1);
 require "../../../inc/db.inc.php";
 require_once "../../../inc/discord.inc.php";
 

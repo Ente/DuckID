@@ -6,8 +6,8 @@ date_default_timezone_set("Europe/Berlin");
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 $db = "duckid";
-$db_username = "";
-$db_password = "";
+$db_username = "root";
+$db_password = null;
 $db_host = "localhost";
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // DO NOT CHANGE BELOW THIS LINE!
@@ -49,42 +49,46 @@ function checkID() {
 
     # Kategorie: Nutzer, Turnier
 
-    "code_c_1",
-    "code_c_2",
-    "code_c_3",
-    "code_c_4",
-    "code_c_5",
-    "code_c_6",
-    "code_c_7",
-    "code_c_8",
-    "code_c_9",
-    "code_t_1",
-    "code_t_2",
-    "code_t_3",
-    "code_t_4"
+    "c_1",
+    "c_2",
+    "c_3",
+    "c_4",
+    "c_5",
+    "c_6",
+    "c_7",
+    "c_8",
+    "c_9",
+    "t_1",
+    "t_2",
+    "t_3",
+    "t_4"
 ];
 
 $all_codes_des = [
-    "code_0" => "Fehler ohne weitere Infos.[code_0]",
-    "code_1" => "Fehler während des Registrationsprozesses, mehr Infos jeweils in der beigefügten Fehlernachricht.[code_1]",
-    "code_2" => "Nutzer nicht in Datenbank gefunden.[code_2]",
-    "code_3" => "Nutzer schon registriert.[code_3]",
+    "code_0" => "Unknown error.[code_0]",
+    "code_1" => "Error while the registration process, please read the error notice.[code_1]",
+    "code_2" => "User not found in DataBase.[code_2]",
+    "code_3" => "User already registered.[code_3]",
 
-    # Kategorie: Nutzer, Turnier
+    # Kategorie: Nutzer, Ticket
 
-    "code_c_1" => "Nutzer wurde aus Turnier ausgeschlossen mit folgendem Status: 'Shadowbanned'.[code_c_1]",
-    "code_c_2" => "Nutzer wurde aus Turnier ausgeschlossen.[code_c_2]",
-    "code_c_3" => "Nutzer kann Turnier nicht beitreten (Status: 'in progress').[code_c_3]",
-    "code_c_4" => "Nutzer kann Turnier nicht beitreten (Status: 'shadowbanned').[code_c_4]",
-    "code_c_5" => "Nutzer kann Turnier nicht beitreten (Status: 'temp ban').[code_c_5]",
-    "code_c_6" => "Nutzer wurde gebannt auf Lebenszeit.[code_c_6]",
-    "code_c_7" => "Es wird eine Antwort oder Aktion des Nutzers seitens Torneos erwartet.[code_c_7]",
-    "code_c_8" => "Bestätigung konnte nicht geschickt werden.[code_c_8]",
-    "code_c_9" => "Channel nicht erkannt oder vorhanden.[code_c_9]",
-    "code_t_1" => "Timeout.[code_t_1]",
-    "code_t_2" => "Argument ungültig oder nicht gefunden.[code_t_2]",
-    "code_t_3" => "Code nicht einsehbar oder vorhanden.[code_t_3]",
-    "code_t_4" => "Nicht in Datenbank gefunden.[code_t_4]"
+    "c_1" => "N/A Status: 'Shadowbanned'.[code_c_1]",
+    "c_2" => "N/A .[code_c_2]",
+    "c_3" => "N/A (Status: 'in progress').[code_c_3]",
+    "c_4" => "N/A (Status: 'shadowbanned').[code_c_4]",
+    "c_5" => "N/A (Status: 'temp ban').[code_c_5]",
+    "c_6" => "User banned (permanent).[code_c_6]",
+    "c_7" => "An answer is expected by the User by the Organisation.[code_c_7]",
+    "c_8" => "The confirmation could not be sent.[code_c_8]",
+    "c_9" => "N/A .[code_c_9]",
+    "t_1" => "Timeout.[code_t_1]",
+    "t_2" => "Arguement invalid or not found.[code_t_2]",
+    "t_3" => "Code not recognizable or not found.[code_t_3]",
+    "t_4" => "Not found in DataBase.[code_t_4]",
+
+    # Kategorie: Erfolg
+
+    "e_1" => "Ticket was created successfully.[code_e_1]"
 ];
 /**
  * Used to check if one of the following codes in `$all_codes` is in URI

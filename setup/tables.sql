@@ -1,9 +1,9 @@
---- Please use the following SQL Statements to create the DataBase for DuckID
+-- Please use the following SQL Statements to create the DataBase for DuckID
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
-CREATE DATABASE "duckid";
+CREATE DATABASE `duckid`;
 
 CREATE TABLE `tickets` (
   `ticket_id` int(255) NOT NULL,
@@ -35,5 +35,5 @@ ALTER TABLE `tickets`
 ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`);
 
-ALTER TABLE `tickets`
+ ALTER TABLE `tickets`
   MODIFY `ticket_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;

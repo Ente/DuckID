@@ -7,7 +7,7 @@ ini_set('max_execution_time', 300);
 error_reporting(E_ALL);
 
 ///////////////////////////////////////////////////////////////////////
-define('OAUTH2_CLIENT_ID', OAUTH2_CLIENT_ID);                         #
+define('OAUTH2_CLIENT_ID', OAUTH2_CLIENT_ID);                                                                        #
 define('OAUTH2_CLIENT_SECRET', OAUTH2_CLIENT_SECRET);                 # Replace with values from the Discord Developer Page
 define('OAUTH_REDIRECT_URI', OAUTH_REDIRECT_URI);                     #
 ///////////////////////////////////////////////////////////////////////
@@ -28,27 +28,27 @@ function apiRequest($url, $post=FALSE, $headers=array()) {
     $response = curl_exec($ch);
   
   
-    if($post)
-      curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
+if($post)
+  curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($post));
   
-    $headers[] = 'Accept: application/json';
+  $headers[] = 'Accept: application/json';
   
-    if(session('access_token'))
-      $headers[] = 'Authorization: Bearer ' . session('access_token');
+  if(session('access_token'))
+    $headers[] = 'Authorization: Bearer ' . session('access_token');
   
-    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+  curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
   
     $response = curl_exec($ch);
     return json_decode($response);
-  }
+}
   
   function get($key, $default=NULL) {
     return array_key_exists($key, $_GET) ? $_GET[$key] : $default;
-  }
+}
   
   function session($key, $default=NULL) {
     return array_key_exists($key, $_SESSION) ? $_SESSION[$key] : $default;
-  }
+}
 
   /*
 

@@ -27,7 +27,7 @@ function publicAPIviewData(){
         return mysqli_error($conn);
     }
     if($count == 1){
-        $sql1 = "SELECT reg_date, reg_time, status, acc_name, role, infos FROM regs WHERE user_id = '{$user_id}';";
+        $sql1 = "SELECT user_id, username, status, banned, reg_date FROM users WHERE user_id = '{$user_id}';";
         $res1 = mysqli_query($conn, $sql1);
         $count1 = mysqli_num_rows($res1);
 

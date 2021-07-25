@@ -1,6 +1,6 @@
 <?php
 
-ini_set("display_errors", 1);
+#ini_set("display_errors", 1);
 setlocale(LC_ALL,"de_DE.UTF-8");
 require_once "api/inc/db.inc.php";
 require_once "api/inc/discord.inc.php";

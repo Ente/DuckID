@@ -64,6 +64,7 @@ if($tp["status"] == "user"){
                 <hr class="sidebar-divider my-0">
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link" href="profile.php"><i class="fas fa-user"></i><span>Manage Profile</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="create_ticket.php"><i class="fas fa-table"></i><span>Create Ticket</span></a></li>
                     <li class="nav-item"><a class="nav-link active" href="all_tickets.php"><i class="fas fa-table"></i><span>All Tickets</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="your_tickets.php"><i class="fa fa-th-list"></i><span>Your Tickets</span></a><a class="nav-link" href="login.php"><i class="far fa-user-circle"></i><span>Login</span></a></li>
                 </ul>
@@ -141,10 +142,12 @@ if($tp["status"] == "user"){
                             </thead>
                             <tbody>
                                 <?php
-
+                                if(!isset($_GET["d_list"])){
+                                    $d_list = 0;
+                                }
                                 if(isset($_GET["d_list"])){
                                     if(!is_numeric($_GET["d_list"])) {
-                                        $d_list = 1;
+                                        $d_list = 0;
                                     } else {
                                         $d_list = $_GET["d_list"];
                                     }

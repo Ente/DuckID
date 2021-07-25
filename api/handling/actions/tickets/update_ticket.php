@@ -1,6 +1,5 @@
 <?php
 
-ini_set("display_errors", 1);
 setlocale(LC_ALL,"de_DE.UTF-8");
 require_once "../../../inc/db.inc.php";
 require_once "../../../inc/discord.inc.php";
@@ -23,9 +22,11 @@ if($count == 1){
 $data1 = urldecode($_POST["infos"]);
 $data2 = json_decode($data1, true);
 
+$encoded_message = urlencode($_POST["text_message"]);
+
 $data = [
     "infos" => $data2,
-    "message" => "{$_POST["text_message"]}"
+    "message" => "{$encoded_message}"
 ];
 
 if($user->id == $data["infos"]["message"]["author_id"]){
