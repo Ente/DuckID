@@ -34,6 +34,8 @@ Head over to the `api/inc/db.inc.php` File and fill in the variables with the re
 Head over to the `api/inc/discord.inc.php` File and fill in the `OAUTH2_CLIENT_ID`, `OAUTH2_CLIENT_SECRET` and `OAUTH_REDIRECT_URI` Variables from
 the Discord Developers Page!
 
+The `OAUTH_REDIRECT_URI` should be like this: http://[domain]/api/handling/discord_login.php?discord=true
+
 ### Step 4:
 
 Register on the Page, go to phpMyAdmin's `users` Table and change your status to `admin`
