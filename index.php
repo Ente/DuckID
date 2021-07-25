@@ -1,5 +1,5 @@
 <?php
-ini_set("display_errors", 1);
+#ini_set("display_errors", 1);
 require_once "api/inc/discord.inc.php";
 require_once "api/inc/db.inc.php";
     header("Location: login.php");

@@ -12,6 +12,9 @@ require "api/vars.php";
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <meta property="og:name" content="DuckID - Test Server">
+    <meta property="og:description" content="This is the DuckID Test Environment Server">
+    <meta property="og:image" content="/assets/img/dogs/image2.jpeg">
 </head>
 
 <body class="bg-gradient-primary">

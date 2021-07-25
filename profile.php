@@ -35,6 +35,8 @@ if($t_count == 1){
 } else {
     $t_tp = "No tickets yet.";
 }
+
+checkCodes();
 ?>
 <head>
     <meta charset="utf-8">
@@ -58,6 +60,7 @@ if($t_count == 1){
                 <hr class="sidebar-divider my-0">
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link active" href="profile.php"><i class="fas fa-user"></i><span>Manage Profile</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="create_ticket.php"><i class="fas fa-table"></i><span>Create Ticket</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="all_tickets.php"><i class="fas fa-table"></i><span>All Tickets</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="your_tickets.php"><i class="fa fa-th-list"></i><span>Your Tickets</span></a><a class="nav-link" href="login.php"><i class="far fa-user-circle"></i><span>Login</span></a></li>
                 </ul>
@@ -119,7 +122,7 @@ if($t_count == 1){
                         <div class="card-header py-3">
                             <h6 class="text-primary font-weight-bold m-0">Tickets</h6>
                             <div class="card">
-                                <div class="card-body"><a class="card-link" href="#"><?php echo $t_tp1["title"];  ?> | Ticket ID: #<?php echo $t_tp["ticket_id"]; ?></a></div>
+                                <div class="card-body"><a class="card-link" href="<?php echo "your_tickets.php?ticket_id={$t_tp["ticket_id"]}";   ?>"><?php echo $t_tp1["title"];  ?> | Ticket ID: #<?php echo $t_tp["ticket_id"]; ?></a></div>
                             </div>
                         </div>
                     </div>

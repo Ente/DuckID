@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-ini_set("display_errors", 1);
+#ini_set("display_errors", 1);
 require_once "api/inc/db.inc.php";
 require_once "api/inc/discord.inc.php";
 include "api/vars.php";
@@ -24,15 +24,24 @@ if($count == 1){
 } else {
     die("No Data found in Database!");
 }
+$fullurl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+if(strpos("action=close", $fullurl)){
+    $d_sql = "UPDATE `tickets` SET `status` = `closed` WHERE ticket_id = '{$_GET["ticket_id"]}'";
+    $d_res = mysqli_query($conn, $d_sql);
+    $d_count = mysqli_num_rows($d_res);
+}
+
 
 if(isset($_GET["ticket_id"])){
     if(isset($_GET["agent"])){
         if($tp["status"] == "agent" || "moderator" || "admin" || "owner"){
             $sql1 = "SELECT * FROM tickets WHERE ticket_id = '{$_GET["ticket_id"]}';";
+            $close_button = "<button type='button' class='btn btn-danger'><a href='{$_SERVER["PHP_SELF"]}?action=close&ticket_id={$_GET["ticket_id"]}'>Close Ticket</a></button>";
         }
     } else {
 
         $sql1 = "SELECT * FROM tickets WHERE ticket_id = '{$_GET["ticket_id"]}' AND creator = '{$user->id}';";
+        $close_button = "<button type='button' class='btn btn-danger'><a href='{$_SERVER["PHP_SELF"]}?action=close&ticket_id={$_GET["ticket_id"]}'>Close Ticket</a></button>";
 
     };
     $res1 = mysqli_query($conn, $sql1);
@@ -72,6 +81,7 @@ if(isset($_GET["ticket_id"])){
                 <hr class="sidebar-divider my-0">
                 <ul class="nav navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link" href="profile.php"><i class="fas fa-user"></i><span>Manage Profile</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="create_ticket.php"><i class="fas fa-table"></i><span>Create Ticket</span></a></li>
                     <li class="nav-item"><a class="nav-link" href="all_tickets.php"><i class="fas fa-table"></i><span>All Tickets</span></a></li>
                     <li class="nav-item"><a class="nav-link active" href="your_tickets.php"><i class="fa fa-th-list"></i><span>Your Tickets</span></a><a class="nav-link" href="login.php"><i class="far fa-user-circle"></i><span>Login</span></a></li>
                 </ul>
@@ -143,6 +153,7 @@ if(isset($_GET["ticket_id"])){
             </div>
             <div class="card-header py-3">
                 <h6 class="text-primary m-0 font-weight-bold">"<?php echo $data_js_infos["title"]; ?>" | Ticket ID: #<?php echo $data["ticket_id"]; ?></h6>
+                <?php echo $close_button;  ?>
             </div>
             <div class="card-body">
                 <?php
@@ -151,13 +162,16 @@ if(isset($_GET["ticket_id"])){
                         if($js["author"] == $user->id){
                             $color = "color: grey;";
                             $float = "float: right;";
+                            
                         } else {
                             $float = null;
                             $color = $float;
                         }
+
+                        $js1 = urldecode($js["message"]);
                             echo <<< DATA
 
-                            <p class="m-0" style="{$color}{$float}padding: 20px;border:solid;border-radius:2%;margin:5px;"><b>{$js["author"]}</b>: "{$js["message"]}"</p>
+                            <p class="m-0" style="{$color}{$float}padding: 20px;border:solid;border-radius:2%;margin:5px;"><b>{$js["author"]}</b>: "{$js1}"</p>
 
                             DATA;
                     }

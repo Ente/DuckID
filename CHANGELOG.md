@@ -1,3 +1,10 @@
+# v0.9.1-oss
+
+- Added `create_ticket.php`
+- Fixed `tables.sql` (in some cases, mySQL couldn't complete the import, which caused fatal errors)
+- Added more detailed Installation Tutorial in `README.md`
+- Added `documentation.md`
+
 # v0.2.0-oss
 
 Added:
