@@ -7,8 +7,8 @@ Please take note, that this list might change with every update and also unsuppo
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 0.1.0   | :white_check_mark: |
-| < 0.1.0   | :x:                |
+| > 0.9.2   | :white_check_mark: |
+| < 0.9.1   | :x:                |
 
 ## Reporting a Vulnerability
 
