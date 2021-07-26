@@ -24,11 +24,25 @@ if($count == 1){
 } else {
     die("No Data found in Database!");
 }
-$fullurl = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-if(strpos("action=close", $fullurl)){
-    $d_sql = "UPDATE `tickets` SET `status` = `closed` WHERE ticket_id = '{$_GET["ticket_id"]}'";
-    $d_res = mysqli_query($conn, $d_sql);
-    $d_count = mysqli_num_rows($d_res);
+$fullurl = "$_SERVER[REQUEST_URI]";
+if(strpos($fullurl, "action=close")){
+    $id = $_GET["ticket_id"];
+    $d_sql = "UPDATE `tickets` SET `status` = 'closed' WHERE ticket_id = '{$id}'";
+    mysqli_query($conn, $d_sql);
+    if(mysqli_error($conn)){
+        die("Error: " . mysqli_error($conn));
+    }
+}
+
+if(strpos($fullurl, "action=delete")){
+    $id = $_GET["ticket_id"];
+    $c_sql = "DELETE FROM tickets WHERE ticket_id = '{$id}'";
+    mysqli_query($conn, $c_sql);
+    if(mysqli_error($conn)){
+        die("Error while deleting ticket:" . mysqli_error($conn));
+    } else {
+        header("Location: profile.php");
+    }
 }
 
 
@@ -36,12 +50,14 @@ if(isset($_GET["ticket_id"])){
     if(isset($_GET["agent"])){
         if($tp["status"] == "agent" || "moderator" || "admin" || "owner"){
             $sql1 = "SELECT * FROM tickets WHERE ticket_id = '{$_GET["ticket_id"]}';";
-            $close_button = "<button type='button' class='btn btn-danger'><a href='{$_SERVER["PHP_SELF"]}?action=close&ticket_id={$_GET["ticket_id"]}'>Close Ticket</a></button>";
+            $close_button = "<button type='button' class='btn btn-warning'><a href='{$_SERVER["PHP_SELF"]}?action=close&ticket_id={$_GET["ticket_id"]}'>Close Ticket</a></button>";
+            $delete_button = "<button type='button' class='btn btn-danger'><a href='{$_SERVER["PHP_SELF"]}?action=delete&ticket_id={$_GET["ticket_id"]}'>Delete Ticket</a></button>";
         }
     } else {
 
         $sql1 = "SELECT * FROM tickets WHERE ticket_id = '{$_GET["ticket_id"]}' AND creator = '{$user->id}';";
-        $close_button = "<button type='button' class='btn btn-danger'><a href='{$_SERVER["PHP_SELF"]}?action=close&ticket_id={$_GET["ticket_id"]}'>Close Ticket</a></button>";
+        $close_button = "<button type='button' class='btn btn-warning'><a href='{$_SERVER["PHP_SELF"]}?action=close&ticket_id={$_GET["ticket_id"]}'>Close Ticket</a></button>";
+        $delete_button = "<button type='button' class='btn btn-danger'><a href='{$_SERVER["PHP_SELF"]}?action=delete&ticket_id={$_GET["ticket_id"]}'>Delete Ticket</a></button>";
 
     };
     $res1 = mysqli_query($conn, $sql1);
@@ -154,6 +170,7 @@ if(isset($_GET["ticket_id"])){
             <div class="card-header py-3">
                 <h6 class="text-primary m-0 font-weight-bold">"<?php echo $data_js_infos["title"]; ?>" | Ticket ID: #<?php echo $data["ticket_id"]; ?></h6>
                 <?php echo $close_button;  ?>
+                <?php echo $delete_button; ?>
             </div>
             <div class="card-body">
                 <?php

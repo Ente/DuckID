@@ -14,10 +14,5 @@ $st_description = "DuckID is a help desk system";
 $st_year = "2020";
 $st_copyright_holders = "Ente";
 $st_administrator_email = "foo@bar.com";
-/*
-$st_image = "/assets/img/torneo_shortcut.png";
 
-$st_ini_status = "status.ini";
-$st_bridge_status = "false";
-*/
 ?>

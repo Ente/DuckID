@@ -1,3 +1,8 @@
+# v0.9.2
+
+- Added working "Delete" and "Close" Ticket Button
+- Removed not used code
+
 # v0.9.1-oss
 
 - Added `create_ticket.php`
